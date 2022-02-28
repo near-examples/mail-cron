@@ -7,7 +7,7 @@ on:
 env:
   EMAIL_USER: ${{ secrets.EMAIL_USERNAME }}
   EMAIL_PASS: ${{ secrets.EMAIL_PASSWORD }}
-  GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+  GITHUB_TOKEN: ${{ secrets.TOKEN_GITHUB}}
 jobs:
   tests-report:
     name: Tests Report

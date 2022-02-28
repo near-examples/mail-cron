@@ -1,4 +1,4 @@
-###Tests Report
+### Tests Report
 This repository hosts the code used 
 to generate a scheduled report on repositories' 
 GitHub Actions' tests. 

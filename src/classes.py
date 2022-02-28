@@ -12,8 +12,8 @@ class Credentials:
 @dataclass
 class Configuration:
     github_accounts = ["idea404"]
-    new_workflow_run_wait_seconds = 3
-    new_workflow_run_wait_attempts = 10
+    new_workflow_run_wait_seconds = 4
+    new_workflow_run_wait_attempts = 3
     repo_actions_completion_try_wait_seconds = 5
     repo_actions_completion_wait_count_limit = 200
 

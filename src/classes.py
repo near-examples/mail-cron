@@ -11,6 +11,7 @@ class Credentials:
 
 @dataclass
 class Configuration:
+    repository_dispatch_type = "tests-report"
     github_accounts = ["idea404"]
     new_workflow_run_wait_seconds = 10
     new_workflow_run_wait_attempts = 3

@@ -5,8 +5,8 @@ on:
   workflow_dispatch:
 
 env:
-  EMAIL_USER: ${{ secrets.EMAIL_USERNAME }}
-  EMAIL_PASS: ${{ secrets.EMAIL_PASSWORD }}
+  EMAIL_USERNAME: ${{ secrets.EMAIL_USERNAME }}
+  EMAIL_PASSWORD: ${{ secrets.EMAIL_PASSWORD }}
   TOKEN: ${{ secrets.TOKEN_GITHUB }}
 jobs:
   tests-report:

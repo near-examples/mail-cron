@@ -18,7 +18,9 @@ logger = structlog.get_logger()
 def run_repo_tests(repo: github.Repository.Repository):
     logger.info(f"Running tests for repository: {repo}")
     latest_test_run = get_repo_latest_completed_workflow_run(repo)
-    repo.create_repository_dispatch(Configuration.repository_dispatch_type, client_payload={})
+    repo.create_repository_dispatch(
+        Configuration.repository_dispatch_type, client_payload={}
+    )
     repo_success = get_repo_new_workflow_run_success(latest_test_run, repo)
     return repo_success
 

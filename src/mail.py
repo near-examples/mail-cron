@@ -6,6 +6,7 @@ import structlog
 
 logger = structlog.get_logger()
 
+
 def send_email(
     from_address: str, from_password: str, to_address: str, subject: str, body: str
 ):

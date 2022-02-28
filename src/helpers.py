@@ -8,13 +8,13 @@ from classes import RepoSuccess, Configuration
 def get_repo_new_workflow_run_success(latest_test_run, repo):
     time.sleep(Configuration.new_workflow_run_wait_seconds)
     newest_test_run = get_repo_latest_workflow_run(repo)
+    has_new_test_run = is_new_test_run(latest_test_run, newest_test_run)
     counter, repo_success = 0, None
-    while newest_test_run is None or (
-        latest_test_run and newest_test_run.created_at <= latest_test_run.created_at
-    ):
+    while not has_new_test_run:
         counter += 1
         time.sleep(Configuration.new_workflow_run_wait_seconds)
         newest_test_run = get_repo_latest_workflow_run(repo)
+        has_new_test_run = is_new_test_run(latest_test_run, newest_test_run)
         if counter >= Configuration.new_workflow_run_wait_attempts:
             repo_success = RepoSuccess(
                 name=repo.full_name,
@@ -47,6 +47,17 @@ def get_repo_new_workflow_run_success(latest_test_run, repo):
         )
 
     return repo_success
+
+
+def is_new_test_run(latest_test_run, newest_test_run):
+    if latest_test_run is None:
+        has_new_test_run = newest_test_run is not None
+    else:
+        if newest_test_run is None:
+            has_new_test_run = False
+        else:
+            has_new_test_run = latest_test_run.id != newest_test_run.id
+    return has_new_test_run
 
 
 def get_repo_latest_workflow_run(

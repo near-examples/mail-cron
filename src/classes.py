@@ -13,8 +13,10 @@ class Credentials:
 class Configuration:
     repository_dispatch_type = "tests-report"
     github_accounts = ["idea404"]
-    new_complete_workflow_run_wait_seconds = 20
-    new_complete_workflow_run_wait_attempts = 15
+    new_created_run_wait_seconds = 10
+    new_created_run_wait_attempts = 3
+    new_completed_run_wait_seconds = 60
+    new_completed_run_wait_attempts = 5
 
 
 @dataclass

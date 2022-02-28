@@ -6,7 +6,7 @@ from unsync import unsync
 from classes import Credentials, RepoSuccess, Configuration
 from helpers import (
     get_repo_new_workflow_run_success,
-    get_repo_latest_completed_workflow_run,
+    get_repo_latest_workflow_run,
 )
 from mail import send_email
 
@@ -17,11 +17,12 @@ logger = structlog.get_logger()
 @unsync
 def run_repo_tests(repo: github.Repository.Repository):
     logger.info(f"Running tests for repository: {repo}")
-    latest_test_run = get_repo_latest_completed_workflow_run(repo)
+    previous_test_run = get_repo_latest_workflow_run(repo)
     repo.create_repository_dispatch(
         Configuration.repository_dispatch_type, client_payload={}
     )
-    repo_success = get_repo_new_workflow_run_success(latest_test_run, repo)
+    repo_success = get_repo_new_workflow_run_success(previous_test_run, repo)
+    logger.debug(f"Tests complete for: {repo}")
     return repo_success
 
 

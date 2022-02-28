@@ -6,15 +6,15 @@ from classes import RepoSuccess, Configuration
 
 
 def get_repo_new_workflow_run_success(latest_test_run, repo):
-    newest_test_run = get_repo_latest_complete_workflow_run(repo)
+    time.sleep(Configuration.new_workflow_run_wait_seconds)
+    newest_test_run = get_repo_latest_workflow_run(repo)
     counter, repo_success = 0, None
-    while (
-        newest_test_run is None
-        or newest_test_run.created_at <= latest_test_run.created_at
+    while newest_test_run is None or (
+        latest_test_run and newest_test_run.created_at <= latest_test_run.created_at
     ):
         counter += 1
         time.sleep(Configuration.new_workflow_run_wait_seconds)
-        newest_test_run = get_repo_latest_complete_workflow_run(repo)
+        newest_test_run = get_repo_latest_workflow_run(repo)
         if counter >= Configuration.new_workflow_run_wait_attempts:
             repo_success = RepoSuccess(
                 name=repo.full_name,
@@ -49,10 +49,9 @@ def get_repo_new_workflow_run_success(latest_test_run, repo):
     return repo_success
 
 
-def get_repo_latest_complete_workflow_run(
+def get_repo_latest_workflow_run(
     repo: github.Repository.Repository,
 ) -> None or github.WorkflowRun.WorkflowRun:
     for run in repo.get_workflow_runs():
-        if run.status == "completed":
-            return run
+        return run
     return None

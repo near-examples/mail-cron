@@ -3,7 +3,7 @@ import structlog
 from github import Github
 from unsync import unsync
 
-from classes import Credentials, RepoSuccess, Configuration
+from classes import Credentials, RepoSuccess, Configuration, SuccessType
 from helpers import (
     get_repo_new_workflow_run_success,
     get_repo_latest_workflow_run,
@@ -42,13 +42,15 @@ def check_repositories_tests(github_client: Github, github_accounts):
 def run_tutorials_testing_report(to_address: str, github_accounts: list[str]):
     github_client = Github(Credentials.github_token)
     repos_test_results = check_repositories_tests(github_client, github_accounts)
-    failed_test_repos = [r for r in repos_test_results if not r.success]
-    if failed_test_repos:
-        subject = "‼️ Failing Tests Found in GitHub Repositories ‼️"
-        body = "--- Failed ---\n"
-        body += "\n" + ",\n".join(str(rs) for rs in failed_test_repos)
-        body += "\n\n--- Success ---\n"
-        body += "\n" + ",\n".join(str(rs) for rs in repos_test_results if rs.success)
+    not_passed_test_repos = [r for r in repos_test_results if r.success_type != SuccessType.PASSED]
+    if not_passed_test_repos:
+        subject = "❗ Failing or Untested GitHub Actions Found in Repositories ❗"
+        body = "--- ❌ Failed ❌ ---\n"
+        body += "\n" + ",\n".join(str(rs) for rs in repos_test_results if rs.success_type == SuccessType.FAILED)
+        body += "\n\n--- ❔ Not Tested ❔ ---\n"
+        body += "\n" + ",\n".join(str(rs) for rs in repos_test_results if rs.success_type == SuccessType.UNTESTED)
+        body += "\n\n--- ✅ Success ✅ ---\n"
+        body += "\n" + ",\n".join(str(rs) for rs in repos_test_results if rs.success_type == SuccessType.PASSED)
         send_email(
             Credentials.email_user,
             Credentials.email_password,

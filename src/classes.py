@@ -1,3 +1,4 @@
+import enum
 import os
 from dataclasses import dataclass
 
@@ -18,10 +19,16 @@ class Configuration:
     new_completed_run_wait_seconds = 60
     new_completed_run_wait_attempts = 5
 
+@dataclass
+class SuccessType:
+    PASSED = "PASSED"
+    UNTESTED = "UNTESTED"
+    FAILED = "FAILED"
+
 
 @dataclass
 class RepoSuccess:
     name: str
-    success: bool
+    success_type: SuccessType
     html_url: str
     message: str = None

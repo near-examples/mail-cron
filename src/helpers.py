@@ -3,7 +3,7 @@ import time
 import github.Repository
 from github.WorkflowRun import WorkflowRun
 
-from classes import RepoSuccess, Configuration
+from classes import RepoSuccess, Configuration, SuccessType
 
 
 def get_repo_new_workflow_run_success(previous_test_run: WorkflowRun | None, repo):
@@ -15,7 +15,7 @@ def get_repo_new_workflow_run_success(previous_test_run: WorkflowRun | None, rep
         if counter >= Configuration.new_created_run_wait_attempts:
             repo_success = RepoSuccess(
                 name=repo.full_name,
-                success=False,
+                success_type=SuccessType.UNTESTED,
                 html_url=newest_test_run.html_url if newest_test_run else repo.html_url,
                 message="No new tests could be triggered as a result of this script",
             )
@@ -39,7 +39,7 @@ def get_repo_new_workflow_run_success(previous_test_run: WorkflowRun | None, rep
         success = newest_test_run.conclusion == "success"
         repo_success = RepoSuccess(
             name=repo.full_name,
-            success=success,
+            success_type=SuccessType.PASSED if success else SuccessType.FAILED,
             html_url=newest_test_run.html_url,
             message=message,
         )

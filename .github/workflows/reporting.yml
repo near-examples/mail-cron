@@ -1,13 +1,13 @@
 name: Report Cron
 on:
   schedule:
-    - cron: "* 16 * * *"
+    - cron: "0 16 * * *"
   workflow_dispatch:
 
 env:
   EMAIL_USER: ${{ secrets.EMAIL_USERNAME }}
   EMAIL_PASS: ${{ secrets.EMAIL_PASSWORD }}
-  TOKEN: ${{ secrets.GITHUB_TOKEN}}
+  TOKEN: ${{ secrets.GITHUB_TOKEN }}
 jobs:
   tests-report:
     name: Tests Report

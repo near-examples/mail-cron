@@ -40,7 +40,9 @@ def get_repo_workflows_conclusions(
             run = repo.get_workflow_run(run_id)
         else:
             run_success = run.conclusion == "success"
-            message = None if run_success else f"❗ Tests have failed ❗ See: {run.html_url}"
+            message = (
+                None if run_success else f"❗ Tests have failed ❗ See: {run.html_url}"
+            )
             run_id_results[run_id].extend([run_success, message])
 
     success = min([r[0] for r in run_id_results.values()])

@@ -8,7 +8,7 @@ from helpers import (
     get_repo_new_workflow_run_success,
     get_repo_latest_workflow_run,
 )
-from mail import send_email
+from mail import send_email, get_mail_body_and_subject
 
 
 logger = structlog.get_logger()
@@ -50,31 +50,14 @@ def run_tutorials_testing_report(to_address: str, github_accounts: list[str]):
         r for r in repos_test_results if r.success_type != SuccessType.PASSED
     ]
     if not_passed_test_repos:
-        subject = "❗ Failing or Untested GitHub Actions Found in Repositories ❗"
-        body = "--- ❌ Failed ❌ ---\n"
-        body += "\n" + ",\n".join(
-            str(rs)
-            for rs in repos_test_results
-            if rs.success_type == SuccessType.FAILED
-        )
-        body += "\n\n--- ❔ Not Tested ❔ ---\n"
-        body += "\n" + ",\n".join(
-            str(rs)
-            for rs in repos_test_results
-            if rs.success_type == SuccessType.UNTESTED
-        )
-        body += "\n\n--- ✅ Success ✅ ---\n"
-        body += "\n" + ",\n".join(
-            str(rs)
-            for rs in repos_test_results
-            if rs.success_type == SuccessType.PASSED
-        )
+        body, subject = get_mail_body_and_subject(repos_test_results)
         send_email(
-            Credentials.email_user,
-            Credentials.email_password,
-            to_address,
-            subject,
-            body,
+            from_address=Configuration.from_address,
+            login_address=Credentials.email_user,
+            login_password=Credentials.email_password,
+            to_address=to_address,
+            subject=subject,
+            body=body,
         )
         return
     logger.info(f"No failing repos found 👍")
@@ -82,5 +65,6 @@ def run_tutorials_testing_report(to_address: str, github_accounts: list[str]):
 
 if __name__ == "__main__":
     run_tutorials_testing_report(
-        to_address=Configuration.to_address, github_accounts=Configuration.github_accounts
+        to_address=Configuration.to_address,
+        github_accounts=Configuration.github_accounts,
     )

@@ -20,7 +20,7 @@ class Configuration:
     from_address = "devrel-ops@near.org"
     new_created_run_wait_seconds = 40
     new_completed_run_wait_seconds = 60
-    new_completed_run_wait_attempts = 30
+    new_completed_run_wait_attempts = 45
 
 
 @dataclass

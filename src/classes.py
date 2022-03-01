@@ -13,7 +13,7 @@ class Credentials:
 class Configuration:
     exclude_repos = ["mail-cron"]
     repository_dispatch_type = "tests-report"
-    github_accounts = ["idea404"]
+    github_accounts = ["near-examples"]
     new_created_run_wait_seconds = 40
     new_completed_run_wait_seconds = 60
     new_completed_run_wait_attempts = 30

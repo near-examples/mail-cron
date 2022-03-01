@@ -1,4 +1,3 @@
-import enum
 import os
 from dataclasses import dataclass
 
@@ -14,10 +13,10 @@ class Credentials:
 class Configuration:
     repository_dispatch_type = "tests-report"
     github_accounts = ["idea404"]
-    new_created_run_wait_seconds = 10
-    new_created_run_wait_attempts = 3
+    new_created_run_wait_seconds = 40
     new_completed_run_wait_seconds = 60
     new_completed_run_wait_attempts = 30
+
 
 @dataclass
 class SuccessType:

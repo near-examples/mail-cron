@@ -42,15 +42,29 @@ def check_repositories_tests(github_client: Github, github_accounts):
 def run_tutorials_testing_report(to_address: str, github_accounts: list[str]):
     github_client = Github(Credentials.github_token)
     repos_test_results = check_repositories_tests(github_client, github_accounts)
-    not_passed_test_repos = [r for r in repos_test_results if r.success_type != SuccessType.PASSED]
+    not_passed_test_repos = [
+        r for r in repos_test_results if r.success_type != SuccessType.PASSED
+    ]
     if not_passed_test_repos:
         subject = "❗ Failing or Untested GitHub Actions Found in Repositories ❗"
         body = "--- ❌ Failed ❌ ---\n"
-        body += "\n" + ",\n".join(str(rs) for rs in repos_test_results if rs.success_type == SuccessType.FAILED)
+        body += "\n" + ",\n".join(
+            str(rs)
+            for rs in repos_test_results
+            if rs.success_type == SuccessType.FAILED
+        )
         body += "\n\n--- ❔ Not Tested ❔ ---\n"
-        body += "\n" + ",\n".join(str(rs) for rs in repos_test_results if rs.success_type == SuccessType.UNTESTED)
+        body += "\n" + ",\n".join(
+            str(rs)
+            for rs in repos_test_results
+            if rs.success_type == SuccessType.UNTESTED
+        )
         body += "\n\n--- ✅ Success ✅ ---\n"
-        body += "\n" + ",\n".join(str(rs) for rs in repos_test_results if rs.success_type == SuccessType.PASSED)
+        body += "\n" + ",\n".join(
+            str(rs)
+            for rs in repos_test_results
+            if rs.success_type == SuccessType.PASSED
+        )
         send_email(
             Credentials.email_user,
             Credentials.email_password,

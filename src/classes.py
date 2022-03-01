@@ -11,6 +11,7 @@ class Credentials:
 
 @dataclass
 class Configuration:
+    exclude_repos = ["mail-cron"]
     repository_dispatch_type = "tests-report"
     github_accounts = ["idea404"]
     new_created_run_wait_seconds = 40

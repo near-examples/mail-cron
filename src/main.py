@@ -30,7 +30,11 @@ def check_repositories_tests(github_client: Github, github_accounts):
     logger.info(f"Calling tests to check for failures (accounts={github_accounts})")
     results = []
     for account in github_accounts:
-        repos = github_client.get_user(account).get_repos()
+        repos = [
+            r
+            for r in github_client.get_user(account).get_repos()
+            if r.name not in Configuration.exclude_repos
+        ]
         devrel_repo_tasks = [run_repo_tests(repo) for repo in repos]
         account_results: list[RepoSuccess] = [
             task.result() for task in devrel_repo_tasks

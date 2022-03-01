@@ -40,7 +40,7 @@ def get_repo_workflows_conclusions(
             run = repo.get_workflow_run(run_id)
         else:
             run_success = run.conclusion == "success"
-            message = None if run_success else "❗ Tests have failed ❗"
+            message = None if run_success else f"❗ Tests have failed ❗ See: {run.html_url}"
             run_id_results[run_id].extend([run_success, message])
 
     success = min([r[0] for r in run_id_results.values()])
@@ -92,8 +92,10 @@ def get_repo_latest_workflow_run(
 def get_repo_newest_workflow_runs(
     repo: github.Repository.Repository, past_run: github.WorkflowRun.WorkflowRun
 ) -> list[github.WorkflowRun.WorkflowRun]:
+    time_in_past = datetime.datetime.now() - datetime.timedelta(days=1)
+    prev_run_datetime = time_in_past if not past_run else past_run.created_at
     return [
-        run for run in repo.get_workflow_runs() if run.created_at > past_run.created_at
+        run for run in repo.get_workflow_runs() if run.created_at > prev_run_datetime
     ]
 
 

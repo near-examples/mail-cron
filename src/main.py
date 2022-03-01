@@ -82,5 +82,5 @@ def run_tutorials_testing_report(to_address: str, github_accounts: list[str]):
 
 if __name__ == "__main__":
     run_tutorials_testing_report(
-        to_address=Credentials.email_user, github_accounts=Configuration.github_accounts
+        to_address=Configuration.to_address, github_accounts=Configuration.github_accounts
     )

@@ -17,7 +17,7 @@ class Configuration:
     new_created_run_wait_seconds = 10
     new_created_run_wait_attempts = 3
     new_completed_run_wait_seconds = 60
-    new_completed_run_wait_attempts = 5
+    new_completed_run_wait_attempts = 30
 
 @dataclass
 class SuccessType:

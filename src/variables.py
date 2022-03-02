@@ -22,10 +22,10 @@ EXCLUDE_REPOS = [  # comment out repo name to include it cron scan
     "erc20-to-nep21",
     "evm-simple",
     "free-place",
-    "FT",  # TODO: comment
+    # "FT",
     "ft-tutorial",
     "gnr8",
-    "guest-book",  # TODO: comment
+    # "guest-book",
     "guest-book-tutorial",
     "hackathon-starter-kit",
     "indexer-tutorials",
@@ -54,7 +54,7 @@ EXCLUDE_REPOS = [  # comment out repo name to include it cron scan
     "place",
     "poker",
     # "pow-faucet",  TODO: this repo has no test workflow
-    "rust-counter",  # TODO: comment
+    # "rust-counter",
     "rust-filehash",
     "rust-filehash-app",
     "rust-ft-raffle",
@@ -62,7 +62,7 @@ EXCLUDE_REPOS = [  # comment out repo name to include it cron scan
     "rust-high-level-cross-contract",
     "rust-linkdrop-app",
     "rust-multisig-example",
-    "rust-status-message",  # TODO: comment
+    # "rust-status-message",
     "rust-template",
     "simple_counter_as",
     "simulation-testing",
@@ -73,7 +73,7 @@ EXCLUDE_REPOS = [  # comment out repo name to include it cron scan
     "transaction-examples",
     "transfer-from-scratch",
     "voting-app",
-    "wallet-example",  # TODO: comment
+    # "wallet-example",
     "webrtc-chat",
     "webrtc-live",
     "workshop--exploring-assemblyscript-contracts",

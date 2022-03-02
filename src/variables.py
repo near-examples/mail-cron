@@ -22,10 +22,10 @@ EXCLUDE_REPOS = [  # comment out repo name to include it cron scan
     "erc20-to-nep21",
     "evm-simple",
     "free-place",
-    # "FT",
+    "FT",  # TODO: comment
     "ft-tutorial",
     "gnr8",
-    # "guest-book",
+    "guest-book",  # TODO: comment
     "guest-book-tutorial",
     "hackathon-starter-kit",
     "indexer-tutorials",
@@ -43,7 +43,7 @@ EXCLUDE_REPOS = [  # comment out repo name to include it cron scan
     "near-pet-shop",
     "NEAR-SIA-SKYNET-Tutorial",
     "nearnames",
-    # "NFT",
+    "NFT",  # TODO: comment
     "nft-exquisite-corpse",
     "nft-market",
     "nft-onboarding",
@@ -54,7 +54,7 @@ EXCLUDE_REPOS = [  # comment out repo name to include it cron scan
     "place",
     "poker",
     # "pow-faucet",  TODO: this repo has no test workflow
-    # "rust-counter",
+    "rust-counter",  # TODO: comment
     "rust-filehash",
     "rust-filehash-app",
     "rust-ft-raffle",
@@ -62,7 +62,7 @@ EXCLUDE_REPOS = [  # comment out repo name to include it cron scan
     "rust-high-level-cross-contract",
     "rust-linkdrop-app",
     "rust-multisig-example",
-    # "rust-status-message",
+    "rust-status-message",  # TODO: comment
     "rust-template",
     "simple_counter_as",
     "simulation-testing",
@@ -73,7 +73,7 @@ EXCLUDE_REPOS = [  # comment out repo name to include it cron scan
     "transaction-examples",
     "transfer-from-scratch",
     "voting-app",
-    # "wallet-example",
+    "wallet-example",  # TODO: comment
     "webrtc-chat",
     "webrtc-live",
     "workshop--exploring-assemblyscript-contracts",

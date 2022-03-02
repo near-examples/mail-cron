@@ -43,7 +43,7 @@ EXCLUDE_REPOS = [  # comment out repo name to include it cron scan
     "near-pet-shop",
     "NEAR-SIA-SKYNET-Tutorial",
     "nearnames",
-    "NFT",  # TODO: comment
+    # "NFT",
     "nft-exquisite-corpse",
     "nft-market",
     "nft-onboarding",

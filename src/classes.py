@@ -6,7 +6,7 @@ from variables import EXCLUDE_REPOS
 
 @dataclass
 class Credentials:
-    github_token = os.environ.get("GITHUB_TOKEN")
+    github_token = os.environ.get("TOKEN")
     email_user = os.environ.get("EMAIL_USERNAME")
     email_password = os.environ.get("EMAIL_PASSWORD")
 

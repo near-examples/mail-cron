@@ -16,7 +16,7 @@ class Configuration:
     exclude_repos = EXCLUDE_REPOS
     repository_dispatch_type = "tests-report"
     github_accounts = ["near-examples"]
-    to_address = "devrel-ops@near.org"
+    to_address = "dennis@near.org"
     from_address = "devrel-ops@near.org"
     new_created_run_wait_seconds = 40
     new_completed_run_wait_seconds = 60

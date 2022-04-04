@@ -2,9 +2,10 @@ import datetime
 import time
 
 import github.Repository
+from github import Github
 from github.WorkflowRun import WorkflowRun
 
-from classes import RepoSuccess, Configuration, SuccessType
+from classes import RepoSuccess, Configuration, SuccessType, Credentials
 
 
 def get_repo_new_workflow_run_success(previous_test_run: WorkflowRun | None, repo):
@@ -119,3 +120,9 @@ def get_test_run_runtime_seconds(test_run: WorkflowRun | None) -> None | int:
     if difference_seconds:
         return difference_seconds
     return None
+
+
+def get_account_repo_list(account: str) -> list[str]:
+    github_client = Github(Credentials.github_token)
+    github_repos = github_client.get_user(account).get_repos()
+    return [r.name for r in github_repos]

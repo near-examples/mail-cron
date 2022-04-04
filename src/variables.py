@@ -48,12 +48,12 @@ EXCLUDE_REPOS = [  # comment out repo name to include it cron scan
     "nft-market",
     "nft-onboarding",
     "nft-series",
-    # "nft-tutorial",  TODO: this repo has no test workflow
+    "nft-tutorial",  # TODO: this repo has no test workflow
     "nft-tutorial-frontend",
     "oracle",
     "place",
     "poker",
-    # "pow-faucet",  TODO: this repo has no test workflow
+    "pow-faucet",  # TODO: this repo has no test workflow
     # "rust-counter",
     "rust-filehash",
     "rust-filehash-app",

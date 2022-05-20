@@ -1,7 +1,7 @@
 import os
 from dataclasses import dataclass
 
-from variables import EXCLUDE_REPOS
+from variables import INCLUDE_REPOS
 
 
 @dataclass
@@ -13,7 +13,7 @@ class Credentials:
 
 @dataclass
 class Configuration:
-    exclude_repos = EXCLUDE_REPOS
+    include_repos = INCLUDE_REPOS
     repository_dispatch_type = "tests-report"
     github_accounts = ["near-examples"]
     to_address = "devrel-ops@near.org"

@@ -33,7 +33,7 @@ def check_repositories_tests(github_client: Github, github_accounts):
         repos = [
             r
             for r in github_client.get_user(account).get_repos()
-            if r.name not in Configuration.exclude_repos
+            if r.name in Configuration.include_repos
         ]
         devrel_repo_tasks = [run_repo_tests(repo) for repo in repos]
         account_results: list[RepoSuccess] = [
